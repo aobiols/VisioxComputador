@@ -5,9 +5,9 @@ import cv2 as cv
 import numpy as np
 
 people = ['Ben Afflek', 'Elton John', 'Jerry Seinfield', 'Madonna', 'Mindy Kaling']
-DIR = r'..Media Files\Faces\train'
+DIR = r'D:\FREAK\opencv-course\Resources\Faces\train'
 
-haar_cascade = cv.CascadeClassifier('haar_face.xml')
+haar_cascade = cv.CascadeClassifier('Section #3 - Faces/haar_face.xml')
 
 features = []
 labels = []
@@ -33,6 +33,9 @@ def create_train():
                 features.append(faces_roi)
                 labels.append(label)
 
+        print("Hem trobat " + str(len(features)) + " features del " + person)
+        print("En portem " + str(len(labels)))
+
 create_train()
 print('Training done ---------------')
 
@@ -44,6 +47,6 @@ face_recognizer = cv.face.LBPHFaceRecognizer_create()
 # Train the Recognizer on the features list and the labels list
 face_recognizer.train(features,labels)
 
-face_recognizer.save('face_trained.yml')
-np.save('features.npy', features)
-np.save('labels.npy', labels)
+face_recognizer.save('Section #3 - Faces/face_trained.yml')
+np.save('Section #3 - Faces/features.npy', features)
+np.save('Section #3 - Faces/labels.npy', labels)
